@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sort Array Without sort()</title>
+</head>
+<body>
+
+    <h2>Sort an Array Without Using sort()</h2>
+
+    <label>Enter numbers (comma-separated):</label>
+    <input type="text" id="arrInput" placeholder="e.g., 10,5,8,20,15">
+    <button onclick="sortArray()">Sort</button>
+
+    <p>Ascending: <span id="asc"></span></p>
+    <p>Descending: <span id="desc"></span></p>
+
+    <script>
+        function bubbleSort(arr, order = "asc") {
+            let len = arr.length;
+            for (let i = 0; i < len - 1; i++) {
+                for (let j = 0; j < len - i - 1; j++) {
+                    let swap = order === "asc" ? arr[j] > arr[j + 1] : arr[j] < arr[j + 1];
+                    if (swap) [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+                }
+            }
+            return arr;
+        }
+
+        function sortArray() {
+            let arr = document.getElementById("arrInput").value
+                .split(',')
+                .map(num => parseFloat(num.trim()))
+                .filter(num => !isNaN(num));
+
+            let ascSorted = bubbleSort([...arr], "asc");
+            let descSorted = bubbleSort([...arr], "desc");
+
+            document.getElementById("asc").innerText = ascSorted.join(", ");
+            document.getElementById("desc").innerText = descSorted.join(", ");
+        }
+    </script>
+
+</body>
+</html>
