@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palindrome Checker</title>
+</head>
+<body>
+
+    <h2>Palindrome Checker</h2>
+    <label>Enter text:</label>
+    <input type="text" id="txt" oninput="check()">
+    
+    <p id="res"></p>
+
+    <script>
+        function isPalin(s) {
+            let clean = s.toLowerCase().replace(/[^a-z0-9]/g, '');
+            return clean === clean.split('').reverse().join('');
+        }
+
+        function check() {
+            let txt = document.getElementById("txt").value;
+            let res = document.getElementById("res");
+
+            res.innerText = txt.trim() ? (isPalin(txt) ? "✅ Yes, it's a palindrome!" : "❌ No, it's not a palindrome.") : "";
+        }
+    </script>
+
+</body>
+</html>
